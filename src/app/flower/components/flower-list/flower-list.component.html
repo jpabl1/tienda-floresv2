@@ -1,5 +1,17 @@
-<p>flower-list is working</p>
 
-<ul>
-  <li></li>
-</ul>
+<div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mt-5">
+  
+  @for( flower of flowers(); track flower.id ) {
+    <a [routerLink]="[ '/dashboard/buy/' + flower.id ]">
+      <div class="bg-blue-950 rounded-lg text-blue-50 pb-2">
+        <div class="items-center">
+          <img class="min-w-full h-full rounded-tr-lg rounded-tl-lg" src="https://images.freeimages.com/image/large-previews/7d3/flowers-5695758.jpeg?fmt=webp&h=350" alt="">
+        </div>
+        <div class="grid grid-cols-2 gap-4 my-2 mx-2">
+          <p class="text-center"> {{ flower.nombre }} </p>
+          <p class="text-center"> ${{ flower.precio.toFixed(2) }} </p>
+        </div>
+      </div>
+    </a>
+  }
+</div>

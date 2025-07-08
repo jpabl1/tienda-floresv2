@@ -1,26 +1,16 @@
 import { Routes } from '@angular/router';
+import { NotAuthenticatedGuard } from './auth/guards/not-autheticated.guard';
 
 export const routes: Routes = [
   {
-    path: 'dashboard',
-    loadComponent: () => import( './flower/pages/dashboard-page/dashboard-page.component'),
-    children: [
-      {
-        path: 'catalog',
-        loadComponent: () => import( './flower/pages/catalog-page/catalog-page.component')
-      },
-      {
-        path: 'sell',
-        loadComponent: () => import( './flower/pages/sell-page/sell-page.component')
-      },
-      {
-        path: '**',
-        redirectTo: 'catalog'
-      }
-    ]
+    path: 'auth',
+    loadChildren: () => import( './auth/auth.routes'),
+    canMatch: [
+      NotAuthenticatedGuard,
+    ],
   },
   {
-    path: '**',
-    redirectTo: 'dashboard'
+    path: '',
+    loadChildren: () => import('./flower/flower.route')
   }
 ];
